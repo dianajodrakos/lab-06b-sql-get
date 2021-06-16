@@ -17,10 +17,21 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );           
-                CREATE TABLE animals (
+                CREATE TABLE books (
                     id SERIAL PRIMARY KEY NOT NULL,
-                    name VARCHAR(512) NOT NULL,
-                    cool_factor INTEGER NOT NULL,
+                    _id INTEGER NOT NULL,
+                    title VARCHAR(126) NOT NULL,
+                    author VARCHAR(100) NOT NULL,
+                    image VARCHAR(256) NOT NULL,
+                    description VARCHAR(512) NOT NULL,
+                    pages INTEGER NOT NULL,
+                    year INTEGER NOT NULL,
+                    language VARCHAR(50) NOT NULL,
+                    publisher VARCHAR(100) NOT NULL,
+                    isbn VARCHAR(13) NOT NULL,
+                    category VARCHAR(256) NOT NULL,
+                    price DEC(10, 2) NOT NULL,
+                    stock BOOL NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
