@@ -1,11 +1,4 @@
-require('dotenv').config();
-
-const { execSync } = require('child_process');
-const fakeRequest = require('supertest');
-const app = require('../lib/app');
-const client = require('../lib/client');
-
-const books = [
+module.exports = [
   {
     sku: 1,
     title: 'Good Work',
@@ -19,8 +12,6 @@ const books = [
     isbn: '0060905611',
     category: 'theory',
     price: '2.06',
-    id: 1, 
-    owner_id: 1,
     stock: true,
   },
 
@@ -37,8 +28,6 @@ const books = [
     isbn: '0811216993',
     category: 'fiction',
     price: '2.26',
-    id: 2,
-    owner_id: 1,
     stock: true,
   },
 
@@ -55,8 +44,6 @@ const books = [
     isbn: '1645020215',
     category: 'foodways',
     price: '25.00',
-    id: 3,
-    owner_id: 1,
     stock: true,
   },
 
@@ -73,8 +60,6 @@ const books = [
     isbn: '006051275X',
     category: 'fiction',
     price: '5.49',
-    id: 4,
-    owner_id: 1,
     stock: true,
   },
 
@@ -91,8 +76,6 @@ const books = [
     isbn: '0415903874',
     category: 'theory',
     price: '32.75',
-    id: 5,
-    owner_id: 1,
     stock: true,
   },
 
@@ -109,74 +92,6 @@ const books = [
     isbn: '0935754016',
     category: 'theory',
     price: '6.00',
-    id: 6,
-    owner_id: 1,
     stock: true,
   }
 ];
-
-describe('app routes', () => {
-  describe('routes', () => {
-    let token;
-  
-    beforeAll(async done => {
-      execSync('npm run setup-db');
-  
-      client.connect();
-  
-      const signInData = await fakeRequest(app)
-        .post('/auth/signup')
-        .send({
-          email: 'jon@user.com',
-          password: '1234'
-        });
-      
-      token = signInData.body.token; // eslint-disable-line
-  
-      return done();
-    });
-  
-    afterAll(done => {
-      return client.end(done);
-    });
-
-    test('returns books', async() => {
-      const expectation = books;
-
-
-      const data = await fakeRequest(app)
-        .get('/books')
-        .expect('Content-Type', /json/)
-        .expect(200);
-
-      expect(data.body).toEqual(expectation);
-    });
-
-    test('returns book id 5', async() => {
-      const expectation =   [{
-        id: 5,
-        sku: 5,
-        title: 'Simians, Cyborgs, and Women: The Reinvention of Nature',
-        author: 'Donna Haraway',
-        image: 'simians-cyborgs-women.jpg',
-        description: '',
-        pages: 312,
-        year: 1991,
-        language: 'English',
-        publisher: 'Routledge',
-        isbn: '0415903874',
-        category: 'theory',
-        price: '32.75',
-        stock: true,
-        owner_id: 1,
-      }];
-
-      const data = await fakeRequest(app)
-        .get('/books/5')
-        .expect('Content-Type', /json/)
-        .expect(200);
-
-      expect(data.body).toEqual(expectation);
-    });
-  });
-});
