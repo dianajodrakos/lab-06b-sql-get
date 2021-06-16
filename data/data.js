@@ -1,6 +1,6 @@
 module.exports = [
   {
-    _id: 1,
+    sku: 1,
     title: 'Good Work',
     author: 'E. F. Schumacher',
     image: 'good-work.jpeg',
@@ -11,12 +11,12 @@ module.exports = [
     publisher: 'HarperCollins Publishers',
     isbn: '0060905611',
     category: 'theory',
-    price: 2.06,
+    price: '2.06',
     stock: true,
   },
 
   {
-    _id: 2,
+    sku: 2,
     title: 'Labyrinths',
     author: 'Jorge Luis Borges',
     image: 'labyrinths.jpg',
@@ -27,12 +27,12 @@ module.exports = [
     publisher: 'New Directions',
     isbn: '0811216993',
     category: 'fiction',
-    price: 2.26,
+    price: '2.26',
     stock: true,
   },
 
   {
-    _id: 3,
+    sku: 3,
     title: 'Fermentation As Metaphor',
     author: 'Sandor Ellix Katz',
     image: 'fermentation-as-metaphor.jpg',
@@ -43,12 +43,12 @@ module.exports = [
     publisher: 'Chelsea Green Publishing',
     isbn: '1645020215',
     category: 'foodways',
-    price: 25,
+    price: '25.00',
     stock: true,
   },
 
   {
-    _id: 4,
+    sku: 4,
     title: 'The Disposessed: An Ambiguous Utopia',
     author: 'Ursula K. LeGuin',
     image: 'the-disposessed.jpg',
@@ -59,12 +59,12 @@ module.exports = [
     publisher: 'HarperCollins Publishers',
     isbn: '006051275X',
     category: 'fiction',
-    price: 5.49,
+    price: '5.49',
     stock: true,
   },
 
   {
-    _id: 5,
+    sku: 5,
     title: 'Simians, Cyborgs, and Women: The Reinvention of Nature',
     author: 'Donna Haraway',
     image: 'simians-cyborgs-women.jpg',
@@ -75,12 +75,12 @@ module.exports = [
     publisher: 'Routledge',
     isbn: '0415903874',
     category: 'theory',
-    price: 32.75,
+    price: '32.75',
     stock: true,
   },
 
   {
-    _id: 6,
+    sku: 6,
     title: 'Operating Manual for Spaceship Earth',
     author: 'R. Buckminster Fuller',
     image: 'operating-spaceship-earth.jpg',
@@ -91,7 +91,7 @@ module.exports = [
     publisher: 'Lars Muller Publishers',
     isbn: '0935754016',
     category: 'theory',
-    price: 6,
+    price: '6.00',
     stock: true,
   }
 ];

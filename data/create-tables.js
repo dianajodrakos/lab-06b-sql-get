@@ -19,7 +19,7 @@ async function run() {
                 );           
                 CREATE TABLE books (
                     id SERIAL PRIMARY KEY NOT NULL,
-                    _id INTEGER NOT NULL,
+                    sku INTEGER NOT NULL,
                     title VARCHAR(126) NOT NULL,
                     author VARCHAR(100) NOT NULL,
                     image VARCHAR(256) NOT NULL,
