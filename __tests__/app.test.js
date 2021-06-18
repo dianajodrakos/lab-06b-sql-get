@@ -153,7 +153,7 @@ describe('app routes', () => {
     });
 
     test('returns book id 5', async() => {
-      const expectation =   [{
+      const expectation =   {
         id: 5,
         sku: 5,
         title: 'Simians, Cyborgs, and Women: The Reinvention of Nature',
@@ -169,7 +169,7 @@ describe('app routes', () => {
         price: '32.75',
         stock: true,
         owner_id: 1,
-      }];
+      };
 
       const data = await fakeRequest(app)
         .get('/books/5')
