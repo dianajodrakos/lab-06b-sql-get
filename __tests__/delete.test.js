@@ -33,7 +33,38 @@ describe('delete route', () => {
     });
 
 
+    test('/DELETE route modifies existing data object', async() => {
+
+      const deletedItem = {
+        sku: 4,
+        title: 'The Disposessed: An Ambiguous Utopia',
+        author: 'Ursula K. LeGuin',
+        image: 'the-disposessed.jpg',
+        description: '',
+        pages: 387,
+        year: 1974,
+        language: 'English',
+        publisher: 'HarperCollins Publishers',
+        isbn: '006051275X',
+        category: 'fiction',
+        price: '5.49',
+        stock: true,
+      };
     
+      await fakeRequest(app)
+        .delete('/books/4')
+        .expect('Content-Type', /json/)
+        .expect(200);
+    
+      const newData = await fakeRequest(app)
+        .get('/books')
+        .expect('Content-Type', /json/)
+        .expect(200);
+    
+      expect(newData.body).not.toContainEqual(deletedItem);
+    });
+  
+
 
   });
 });
