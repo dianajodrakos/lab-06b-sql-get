@@ -33,6 +33,54 @@ describe('post route', () => {
     });
 
 
+    test('/POST route adds now data object', async() => {
+
+      const expectation = {
+        id: 7,
+        sku: 7,
+        title: 'The Noma Guide to Fermentation',
+        author: 'René Redzepi and David Zilber',
+        image: 'noma-guide.jpeg',
+        description: 'A series of lectures on economics, intermediate technology, and human-centered industry.',
+        pages: 456,
+        year: 2018,
+        language: 'English',
+        publisher: 'Artisan',
+        isbn: '1579657184',
+        category: 'foodways',
+        price: '29.26',
+        stock: false,
+        owner_id: 1,
+      };
+
+      const data = await fakeRequest(app)
+        .post('/books')
+        .send({
+          sku: 7,
+          title: 'The Noma Guide to Fermentation',
+          author: 'René Redzepi and David Zilber',
+          image: 'noma-guide.jpeg',
+          description: 'A series of lectures on economics, intermediate technology, and human-centered industry.',
+          pages: 456,
+          year: 2018,
+          language: 'English',
+          publisher: 'Artisan',
+          isbn: '1579657184',
+          category: 'foodways',
+          price: '29.26',
+          stock: false
+        })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const newData = await fakeRequest(app)
+        .get('/books')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(newData.body).toContainEqual(expectation);
+    });
 
 
   });
