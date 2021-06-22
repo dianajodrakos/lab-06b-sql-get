@@ -38,10 +38,10 @@ async function run() {
                     description VARCHAR(512) NOT NULL,
                     pages INTEGER NOT NULL,
                     year INTEGER NOT NULL,
-                    language VARCHAR(256) NOT NULL REFERENCES languages(id),
+                    language_id VARCHAR(256) NOT NULL REFERENCES languages(id),
                     publisher VARCHAR(256) NOT NULL,
                     isbn VARCHAR(13) NOT NULL,
-                    category VARCHAR(256) NOT NULL REFERENCES categories(id),
+                    category_id VARCHAR(256) NOT NULL REFERENCES categories(id),
                     price DEC(10, 2) NOT NULL,
                     stock BOOL NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
