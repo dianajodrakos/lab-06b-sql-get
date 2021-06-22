@@ -38,48 +38,56 @@ describe('post route', () => {
       const expectation = {
         id: 7,
         sku: 7,
-        title: 'The Noma Guide to Fermentation',
-        author: 'René Redzepi and David Zilber',
-        image: 'noma-guide.jpeg',
-        description: 'A series of lectures on economics, intermediate technology, and human-centered industry.',
-        pages: 456,
-        year: 2018,
+        title: 'The Art of Fermentation',
+        author: 'Sandor Ellix Katz',
+        image: 'art-of-fermentation.jpeg',
+        description: 'The bible for the D.I.Y set: detailed instructions for how to make your own sauerkraut, beer, yogurt and pretty much everything involving microorganisms.',
+        pages: 498,
+        year: 2012,
         language: 'English',
-        publisher: 'Artisan',
-        isbn: '1579657184',
+        publisher: 'Chelsea Green',
+        isbn: '160358286X',
         category: 'foodways',
         price: '29.26',
-        stock: false,
+        stock: true,
+        owner_id: 1,
+        author_id: 3,
+        category_id: 3,
+        language_id: 1,
+      };
+
+
+      const sendData = {
+        id: 7,
+        sku: 7,
+        title: 'The Art of Fermentation',
+        author_id: 3,
+        image: 'art-of-fermentation.jpeg',
+        description: 'The bible for the D.I.Y set: detailed instructions for how to make your own sauerkraut, beer, yogurt and pretty much everything involving microorganisms.',
+        pages: 498,
+        year: 2012,
+        language_id: 1,
+        publisher: 'Chelsea Green',
+        isbn: '160358286X',
+        category_id: 3,
+        price: '29.26',
+        stock: true,
         owner_id: 1,
       };
 
       const data = await fakeRequest(app)
         .post('/books')
-        .send({
-          sku: 7,
-          title: 'The Noma Guide to Fermentation',
-          author: 'René Redzepi and David Zilber',
-          image: 'noma-guide.jpeg',
-          description: 'A series of lectures on economics, intermediate technology, and human-centered industry.',
-          pages: 456,
-          year: 2018,
-          language: 'English',
-          publisher: 'Artisan',
-          isbn: '1579657184',
-          category: 'foodways',
-          price: '29.26',
-          stock: false
-        })
+        .send(sendData)
         .expect('Content-Type', /json/)
         .expect(200);
 
       const newData = await fakeRequest(app)
-        .get('/books')
+        .get('/books/7')
         .expect('Content-Type', /json/)
         .expect(200);
 
-      expect(data.body).toEqual(expectation);
-      expect(newData.body).toContainEqual(expectation);
+      expect(data.body).toEqual(sendData);
+      expect(newData.body).toEqual(expectation);
     });
 
 
