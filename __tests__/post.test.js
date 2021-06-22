@@ -33,7 +33,7 @@ describe('post route', () => {
     });
 
 
-    test('/POST route adds now data object', async() => {
+    test('/POST route adds new data object', async() => {
 
       const expectation = {
         id: 7,
