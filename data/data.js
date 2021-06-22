@@ -89,7 +89,7 @@ const books = [
     description: '',
     pages: 152,
     year: 1969,
-    language: 1,
+    language_id: 1,
     publisher: 'Lars Muller Publishers',
     isbn: '0935754016',
     category_id: 1,
