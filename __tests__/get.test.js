@@ -128,6 +128,55 @@ const books = [
   }
 ];
 
+const authors = [
+  { 
+    id: 1,
+    author: 'E.F. Schumacher'
+  },
+  {
+    id: 2,
+    author: 'Jorge Luis Borges'
+  },
+  {
+    id: 3,
+    author: 'Sandor Ellix Katz'
+  },
+  {
+    id: 4,
+    author: 'Ursula K. LeGuin',
+  },
+  {
+    id: 5,
+    author: 'Donna Haraway'
+  },
+  {
+    id: 6,
+    author: 'R. Buckminster Fuller'
+  }
+];
+
+const categories = [
+  {
+    id: 1,
+    category: 'theory'
+  },
+  {
+    id: 2,
+    category: 'fiction'
+  }, 
+  {
+    id: 3,
+    category: 'foodways'
+  }
+];
+
+const languages = [
+  { 
+    id: 1,
+    language: 'English' 
+  }
+];
+
 describe('get routes', () => {
   describe('routes', () => {
     let token;
@@ -151,6 +200,42 @@ describe('get routes', () => {
   
     afterAll(done => {
       return client.end(done);
+    });
+
+    test('returns authors', async() => {
+      const expectation = authors;
+
+
+      const data = await fakeRequest(app)
+        .get('/authors')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns categories', async() => {
+      const expectation = categories;
+
+
+      const data = await fakeRequest(app)
+        .get('/categories')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns languages', async() => {
+      const expectation = languages;
+
+
+      const data = await fakeRequest(app)
+        .get('/languages')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
     });
 
     test('returns books', async() => {
