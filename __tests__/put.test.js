@@ -38,37 +38,44 @@ describe('put route', () => {
         id: 2,
         sku: 2,
         title: 'Labyrinths',
-        author: 'Jorge Luis Borges',
+        author_id: 2,
         image: 'labyrinths.jpg',
         description: 'Labyrinths is a collection of stories revolving--as the planets, the asteroids, et al, do around the sun--around the concept of the labyrinth, whether it be one of time or space or pure imagination.',
         pages: 240,
         year: 1962,
-        language: 'English',
+        language_id: 1,
         publisher: 'New Directions',
         isbn: '0811216993',
-        category: 'fiction',
+        category_id: 2,
         price: '2.72',
         stock: false,
         owner_id: 1,
+        author: 'Jorge Luis Borges',
+        category: 'fiction',
+        language: 'English'
       };
   
+      const sendData = {
+        id: 2,
+        sku: 2,
+        title: 'Labyrinths',
+        author_id: 2,
+        image: 'labyrinths.jpg',
+        description: 'Labyrinths is a collection of stories revolving--as the planets, the asteroids, et al, do around the sun--around the concept of the labyrinth, whether it be one of time or space or pure imagination.',
+        pages: 240,
+        year: 1962,
+        language_id: 1,
+        publisher: 'New Directions',
+        isbn: '0811216993',
+        category_id: 2,
+        price: '2.72',
+        stock: false,
+        owner_id: 1
+      };
+
       const data = await fakeRequest(app)
         .put('/books/2')
-        .send({
-          sku: 2,
-          title: 'Labyrinths',
-          author: 'Jorge Luis Borges',
-          image: 'labyrinths.jpg',
-          description: 'Labyrinths is a collection of stories revolving--as the planets, the asteroids, et al, do around the sun--around the concept of the labyrinth, whether it be one of time or space or pure imagination.',
-          pages: 240,
-          year: 1962,
-          language: 'English',
-          publisher: 'New Directions',
-          isbn: '0811216993',
-          category: 'fiction',
-          price: '2.72',
-          stock: false,
-        })
+        .send(sendData)
         .expect('Content-Type', /json/)
         .expect(200);
   
@@ -77,7 +84,7 @@ describe('put route', () => {
         .expect('Content-Type', /json/)
         .expect(200);
   
-      expect(data.body).toEqual(expectation);
+      expect(data.body).toEqual(sendData);
       expect(newData.body).toContainEqual(expectation);
     });
 
